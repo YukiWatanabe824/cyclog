@@ -1,0 +1,11 @@
+{
+  "name": "cyclog",
+  "version": "1.0.0",
+  "description": "This npm paclage is cycling-ride logged npm.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nabeyu",
+  "license": "MIT"
+}
