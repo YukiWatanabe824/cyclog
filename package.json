@@ -24,6 +24,10 @@
   "license": "MIT",
   "type": "commonjs",
   "dependencies": {
+    "cyclog": "^1.0.0",
     "enquirer": "^2.3.6"
+  },
+  "devDependencies": {
+    "eslint": "^8.34.0"
   }
 }
