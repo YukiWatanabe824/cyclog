@@ -132,6 +132,7 @@ class UserInterFace {
   async yearSlect() {
     const storagefile = new StorageFile();
     let cyclingLogs = storagefile.read();
+
     const { Select } = require("enquirer");
     const prompt = new Select({
       name: "selectyear",
@@ -190,7 +191,9 @@ class CyclogDirecter {
     } else if (userChoice === "ログを見る") {
       this.viewLog();
     } else if (userChoice === "ログを削除する") {
-      const deleteLogId = await this.userInterFace.destroyLogSelect(await this.getYearAndMonthFilterdLog());
+      const deleteLogId = await this.userInterFace.destroyLogSelect(
+        await this.getYearAndMonthFilterdLog()
+      );
       this.storageFile.delete(deleteLogId);
     } else {
       console.log("Illegal Choice");
@@ -223,5 +226,5 @@ class CyclogDirecter {
 }
 
 exports.cyclogDirecter = () => {
-  return new CyclogDirecter()
-}
+  return new CyclogDirecter();
+};
