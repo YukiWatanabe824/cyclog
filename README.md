@@ -19,11 +19,4 @@ $ cyclog
   ログを見る
   ログを削除する
 ```
-
-### log your cycling
-
-### view total data
-
-### view past log
-
-### delete log
+![画面収録_2023-02-10_19_45_47_AdobeExpress (1)](https://user-images.githubusercontent.com/69577164/218076817-15077dda-9a5b-4fd7-8d0a-dcae1b1b496b.gif)
