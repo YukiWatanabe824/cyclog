@@ -3,11 +3,26 @@
   "version": "0.9.0",
   "description": "This npm paclage is cycling-ride logged npm.",
   "main": "index.js",
+  "bin": {
+    "cyclog": "index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YukiWatanabe824/cyclog"
+  },
+  "bugs": {
+    "url": "https://github.com/YukiWatanabe824/cyclog/issues"
+  },
+  "homepage": "https://github.com/YukiWatanabe824/cyclog",
+  "keywords": [
+    "cycling"
+  ],
   "author": "nabeyu",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "enquirer": "^2.3.6"
   }
