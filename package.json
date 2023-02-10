@@ -1,6 +1,6 @@
 {
   "name": "cyclog",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "This npm paclage is cycling-ride logged npm.",
   "main": "index.js",
   "bin": {
