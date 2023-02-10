@@ -22,7 +22,7 @@
   ],
   "author": "nabeyu",
   "license": "MIT",
-  "type": "module",
+  "type": "commonjs",
   "dependencies": {
     "enquirer": "^2.3.6"
   }
