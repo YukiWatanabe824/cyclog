@@ -19,6 +19,4 @@ $ cyclog
   ログを見る
   ログを削除する
 ```
-
-<div style="width:100%;height:0;padding-bottom:36%;position:relative;"><iframe src="https://giphy.com/embed/kXejFVMRJpOw8A8Tym" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/kXejFVMRJpOw8A8Tym">via GIPHY</a></p>
-
+![画面収録_2023-02-10_19_45_47_AdobeExpress (1)](https://user-images.githubusercontent.com/69577164/218076817-15077dda-9a5b-4fd7-8d0a-dcae1b1b496b.gif)
