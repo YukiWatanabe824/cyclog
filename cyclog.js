@@ -10,11 +10,9 @@ class CyclingLog {
   }
 
   async createNewLog(log) {
-    let cyclingLogs = this.storageFile.read();
-    let maxId;
-
-    [cyclingLogs, maxId] = this.firstLogOrNot(cyclingLogs, maxId);
+    const [cyclingLogs, maxId] = this.firstLogOrNot(this.storageFile.read());
     const date = new Date();
+
     cyclingLogs.push({
       id: maxId + 1,
       year: date.getFullYear(),
@@ -28,7 +26,8 @@ class CyclingLog {
     return cyclingLogs;
   }
 
-  firstLogOrNot(cyclingLogs, maxId) {
+  firstLogOrNot(cyclingLogs) {
+    let maxId
     if (cyclingLogs === "") {
       cyclingLogs = [];
       maxId = 0;
