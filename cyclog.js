@@ -1,6 +1,6 @@
 class CyclingLog {
-  constructor() {
-    this.storageFile = new StorageFile();
+  constructor(storageFile) {
+    this.storageFile = storageFile;
   }
 
   async saveNewLog(log) {
@@ -75,10 +75,10 @@ class StorageFile {
       : fs.writeFileSync("cyclingLog.json", "");
   }
 
-  async save(data) {
-    data = JSON.stringify(data);
+  async save(logs) {
+    logs = JSON.stringify(logs);
     const { writeFile } = require("node:fs/promises");
-    const promise = writeFile("cyclingLog.json", data);
+    const promise = writeFile("cyclingLog.json", logs);
     return promise;
   }
 
@@ -174,10 +174,10 @@ class UserInterFace {
 }
 
 class CyclogDirecter {
-  constructor() {
-    this.log = new CyclingLog();
-    this.storageFile = new StorageFile();
-    this.userInterFace = new UserInterFace();
+  constructor(cyclingLog, storageFile, userInterFace) {
+    this.log = cyclingLog;
+    this.storageFile = storageFile;
+    this.userInterFace = userInterFace;
   }
   async main() {
     const userChoice = await this.userInterFace.firstQuestion();
@@ -224,5 +224,5 @@ class CyclogDirecter {
 }
 
 exports.cyclogDirecter = () => {
-  return new CyclogDirecter();
+  return new CyclogDirecter(new CyclingLog(new StorageFile), new StorageFile(), new UserInterFace());
 };
