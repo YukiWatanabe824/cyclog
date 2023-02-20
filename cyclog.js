@@ -209,8 +209,7 @@ class CyclogDirecter {
   }
 
   pastLogTotal() {
-    let totalDistance, rideCount, visitedCount;
-    [totalDistance, rideCount, visitedCount] = this.log.logSum();
+    const [totalDistance, rideCount, visitedCount] = this.log.logSum();
 
     console.log(`総距離: ${totalDistance}km走りました！`);
     console.log(`ライド数: ${rideCount}回サイクリングを楽しみました！`);
