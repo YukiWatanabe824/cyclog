@@ -128,7 +128,7 @@ class UserInterFace {
     return prompt.run();
   }
 
-  async yearSlect() {
+  async selectYear() {
     const storagefile = new StorageFile();
     let cyclingLogs = storagefile.read();
 
@@ -141,7 +141,7 @@ class UserInterFace {
     return prompt.run();
   }
 
-  async monthSlect(selectYear) {
+  async selectMonth(selectYear) {
     const storagefile = new StorageFile();
     let filteredYearcyclingLogs = storagefile
       .read()
@@ -217,8 +217,8 @@ class CyclogDirecter {
   }
 
   async getYearAndMonthFilterdLog() {
-    const selectYear = await this.userInterFace.yearSlect();
-    const selectMonth = await this.userInterFace.monthSlect(selectYear);
+    const selectYear = await this.userInterFace.selectYear();
+    const selectMonth = await this.userInterFace.selectMonth(selectYear);
     return this.log.filteringDate(parseInt(selectYear), parseInt(selectMonth));
   }
 }
