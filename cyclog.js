@@ -1,6 +1,6 @@
 class CyclingLog {
-  constructor() {
-    this.storageFile = new StorageFile();
+  constructor(storageFile) {
+    this.storageFile = storageFile;
   }
 
   async saveNewLog(log) {
@@ -10,11 +10,9 @@ class CyclingLog {
   }
 
   async createNewLog(log) {
-    let cyclingLogs = this.storageFile.read();
-    let maxId;
-
-    [cyclingLogs, maxId] = this.firstLogOrNot(cyclingLogs, maxId);
+    const [cyclingLogs, maxId] = this.firstLogOrNot(this.storageFile.read());
     const date = new Date();
+
     cyclingLogs.push({
       id: maxId + 1,
       year: date.getFullYear(),
@@ -28,7 +26,8 @@ class CyclingLog {
     return cyclingLogs;
   }
 
-  firstLogOrNot(cyclingLogs, maxId) {
+  firstLogOrNot(cyclingLogs) {
+    let maxId
     if (cyclingLogs === "") {
       cyclingLogs = [];
       maxId = 0;
@@ -76,10 +75,10 @@ class StorageFile {
       : fs.writeFileSync("cyclingLog.json", "");
   }
 
-  async save(data) {
-    data = JSON.stringify(data);
+  async save(logs) {
+    logs = JSON.stringify(logs);
     const { writeFile } = require("node:fs/promises");
-    const promise = writeFile("cyclingLog.json", data);
+    const promise = writeFile("cyclingLog.json", logs);
     return promise;
   }
 
@@ -129,7 +128,7 @@ class UserInterFace {
     return prompt.run();
   }
 
-  async yearSlect() {
+  async selectYear() {
     const storagefile = new StorageFile();
     let cyclingLogs = storagefile.read();
 
@@ -142,7 +141,7 @@ class UserInterFace {
     return prompt.run();
   }
 
-  async monthSlect(selectYear) {
+  async selectMonth(selectYear) {
     const storagefile = new StorageFile();
     let filteredYearcyclingLogs = storagefile
       .read()
@@ -175,10 +174,10 @@ class UserInterFace {
 }
 
 class CyclogDirecter {
-  constructor() {
-    this.log = new CyclingLog();
-    this.storageFile = new StorageFile();
-    this.userInterFace = new UserInterFace();
+  constructor(cyclingLog, storageFile, userInterFace) {
+    this.log = cyclingLog;
+    this.storageFile = storageFile;
+    this.userInterFace = userInterFace;
   }
   async main() {
     const userChoice = await this.userInterFace.firstQuestion();
@@ -210,8 +209,7 @@ class CyclogDirecter {
   }
 
   pastLogTotal() {
-    let totalDistance, rideCount, visitedCount;
-    [totalDistance, rideCount, visitedCount] = this.log.logSum();
+    const [totalDistance, rideCount, visitedCount] = this.log.logSum();
 
     console.log(`総距離: ${totalDistance}km走りました！`);
     console.log(`ライド数: ${rideCount}回サイクリングを楽しみました！`);
@@ -219,12 +217,12 @@ class CyclogDirecter {
   }
 
   async getYearAndMonthFilterdLog() {
-    const selectYear = await this.userInterFace.yearSlect();
-    const selectMonth = await this.userInterFace.monthSlect(selectYear);
+    const selectYear = await this.userInterFace.selectYear();
+    const selectMonth = await this.userInterFace.selectMonth(selectYear);
     return this.log.filteringDate(parseInt(selectYear), parseInt(selectMonth));
   }
 }
 
 exports.cyclogDirecter = () => {
-  return new CyclogDirecter();
+  return new CyclogDirecter(new CyclingLog(new StorageFile), new StorageFile(), new UserInterFace());
 };
